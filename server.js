@@ -30,9 +30,7 @@ mongoose.Promise = Promise;
 mongoose.connect("mongodb://heroku_ld8jsk2q:s5lanac4irjlgtt3cnek8ps2v2@ds025439.mlab.com:25439/heroku_ld8jsk2q", {
   useMongoClient: true
 });
-$ heroku config | grep MONGODB_URI
-MONGODB_URI: mongodb://heroku_ld8jsk2q:s5lanac4irjlgtt3cnek8ps2v2@ds025439.mlab.
-com:25439/heroku_ld8jsk2q
+
 var db = mongoose.connection;
 
 var Comment = require('./models/Note.js');
