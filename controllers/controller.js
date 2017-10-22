@@ -92,6 +92,7 @@ router.post('/add/note/:id', function (req, res){
           console.log(err);
         } 
         else {
+          res.redirect("/articles");
         }
       });
     }
@@ -107,6 +108,7 @@ router.post('/remove/note/:id', function (req, res){
       console.log(err);
     } 
     else {
+      res.redirect("/articles");
     }
 
   });
