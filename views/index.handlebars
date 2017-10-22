@@ -38,8 +38,7 @@
               <div class="input-field col s8">
               <center><input class="btn addNote" data-id="{{_id}}" type="submit" value="SAVE"></center>
               </div>
-            </div>
-          
+            </div>       
           </form>
       </div>
     </li>
@@ -56,13 +55,11 @@
             
               <li class="collection-item">
                 <b>{{title}}</b> 
-
                 <span class="badge">
                   <form id="form-delete-{{_id}}" action="remove/note/{{_id}}" method="post">
                     <input class="btn-small deleteNote" data-id="{{_id}}" type="submit" value="DELETE" style="color: white; background-color: red; border-color: red;">
                   </form>
                 </span>
-
                 {{content}}
               </li> 
 
@@ -75,6 +72,5 @@
                 
       </div>
     </li>
-
   </ul>
 {{/each}}

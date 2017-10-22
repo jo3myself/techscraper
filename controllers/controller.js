@@ -1,3 +1,4 @@
+// set dependencies
 var express = require('express');
 var router = express.Router();
 var path = require('path');
@@ -11,6 +12,7 @@ router.get('/', function (req, res){
   res.redirect('/scrape');
 });
 
+// route for get articles and notes
 router.get('/articles', function (req, res){
   Article.find().sort({_id: 1})
     .populate('notes')
@@ -25,6 +27,7 @@ router.get('/articles', function (req, res){
     });
 });
 
+// route for scrape articles and check data
 router.get('/scrape', function(req, res) {
   request("https://www.techbargains.com", function(error, response, html) {
   var $ = cheerio.load(html);
@@ -50,13 +53,11 @@ router.get('/scrape', function(req, res) {
                   }
                 });
               }
-
               else{
                 console.log('Duplicate')
               }
             });
-          }
-        
+          }      
         else{
           console.log('Duplicate')
         }
@@ -65,11 +66,11 @@ router.get('/scrape', function(req, res) {
         console.log('Empty Content')
       }
     });
-
     res.redirect("/articles");
   });
 });
 
+// route for add note
 router.post('/add/note/:id', function (req, res){
   var articleId = req.params.id;
   var noteTitle = req.body.title;
@@ -84,7 +85,6 @@ router.post('/add/note/:id', function (req, res){
     if (err) {
       console.log(err);
     } 
-
     else {
       Article.findOneAndUpdate({'_id': articleId}, {$push: {'notes':doc._id}}, {new: true})
       .exec(function(err, doc){
@@ -99,20 +99,17 @@ router.post('/add/note/:id', function (req, res){
   });
 });
 
+// route for delete note
 router.post('/remove/note/:id', function (req, res){
   var noteId = req.params.id;
-
-  Note.findByIdAndRemove(noteId, function (err, todo) {  
-    
+  Note.findByIdAndRemove(noteId, function (err, todo) {    
     if (err) {
       console.log(err);
     } 
     else {
       res.redirect("/articles");
     }
-
   });
-
 });
 
 
