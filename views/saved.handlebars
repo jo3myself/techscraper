@@ -5,15 +5,9 @@
  
     <div class="card-header text-center" role="tab" id="headingOne">
       <h5 class="mb-0">
-        <span class="badge">
-        <a href="save/{{_id}}"><input class="btn-small saveArticle" data-id="{{_id}}" type="submit" value="!save!" style="color: white; background-color:indigo; border-color: indigo;"></a>
-        </span>
         <b>{{title}}</b>
-        <span class="badge">
-        <a href="save/{{_id}}"><input class="btn-small saveArticle" data-id="{{_id}}" type="submit" value="!save!" style="color: white; background-color:indigo; border-color: indigo;"></a>
-        </span>
-            <p>Deal is from {{summary}} website.<i>Click <a href="{{link}}" target="_new">here</a> for the link.</i></p>
-            <p>Deal posted on : {{updated}}<p>
+        <p>Deal is from {{summary}} website.<i>Click <a href="{{link}}" target="_new">here</a> for the link.</i></p>
+        <p>Deal posted on : {{updated}}<p>
       </h5>
     </div>
  
@@ -23,7 +17,7 @@
           NOTES
         </a>
       </h5>
-    </div>
+    </div> 
  
     <div id="collapse{{_id}}" class="collapse" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion">
       <div class="card-body">
@@ -48,7 +42,7 @@
        
         <h6>Add a Note</h6>
         <hr>
-        <form id="form-add-{{_id}}" action="add/note/{{_id}}" method="post style="background-color: white;">
+        <form id="form-add-{{_id}}" action="add/note/{{_id}}" method="post" style="background-color: white;">
            <label>Note Title:</label>
            <input name="title" type="text" class="form-control form-control-sm">
            <label for="comment_box">Your Note:</label>
@@ -57,7 +51,7 @@
         </form>
       </div>
     </div> 
- 
+  
   </div> <!-- end card -->
 </div> <!-- end accordion -->
 </div> <!-- end container -->

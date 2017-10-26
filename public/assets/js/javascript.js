@@ -2,7 +2,6 @@ $(document).ready(function(){
 
 // when addNote click
   $('.addNote').on('click', function(){
-
     var articleId = $(this).data("id");
     var baseURL = window.location.origin;
     var frmName = "form-add-" + articleId;
@@ -15,17 +14,13 @@ $(document).ready(function(){
       data: frm.serialize(),
     })
     .done(function() {
-      // reload the page after done
       location.reload();
     });
-
     return false;
-
   });
 
     // when deleteNote execute
   $('.deleteNote').on('click', function(){
-
     var noteId = $(this).data("id");
     var baseURL = window.location.origin;
 
@@ -37,8 +32,23 @@ $(document).ready(function(){
     .done(function() {
       location.reload();
     });
-
     return false;
+  }); 
 
-  });  
+  // when saveArticle click
+  $('.saveArticle').on('click', function(){
+    var articleId = $(this).data("id");
+    var baseURL = window.location.origin;
+    
+    // save the article to database
+    $.ajax({
+      url: baseURL + '/save/' + articleId,
+      type: 'POST',
+    })
+    .done(function() {
+      location.reload();
+    });
+    return false;
+  });
+
 });

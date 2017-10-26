@@ -5,6 +5,7 @@ var path = require('path');
 var request = require('request'); 
 var cheerio = require('cheerio');
 
+// require
 var Note = require('../models/Note.js');
 var Article = require('../models/Article.js');
 
@@ -14,7 +15,7 @@ router.get('/', function (req, res){
 
 // route for get articles and notes
 router.get('/articles', function (req, res){
-  Article.find().sort({_id: 1})
+  Article.find({ saved: false }).sort({_id: 1})
     .populate('notes')
     .exec(function(err, doc){
       if (err){
@@ -23,6 +24,21 @@ router.get('/articles', function (req, res){
       else {
         var hbsObject = {articles: doc}
         res.render('index', hbsObject);
+      }
+    });
+});
+
+// route to go to saved page
+router.get('/saved', function (req, res){
+  Article.find({ saved: true }).sort({_id: 1})
+    .populate('notes')
+    .exec(function(err, doc){
+      if (err){
+        console.log(err);
+      }
+      else {
+        var hbsObject = {articles: doc}
+        res.render('saved', hbsObject);
       }
     });
 });
@@ -112,5 +128,18 @@ router.post('/remove/note/:id', function (req, res){
   });
 });
 
+// route to save article
+router.post("/save/:id", function(req, res) {
+var articleId = req.params.id;
+  Article.findOneAndUpdate({'_id': articleId}, { saved: true })
+      .exec(function(err, doc){
+        if (err){
+          console.log(err);
+        }
+        else {
+          res.redirect("/articles");
+        }
+  });
+});    
 
 module.exports = router;

@@ -17,6 +17,11 @@ var ArticleSchema = new Schema({
     type: String,
     required: true
   },
+  saved: {
+    type: Boolean,
+    default: false,
+    required: true
+},
   updated: {
     type: String,
     default: moment().format('MMMM Do YYYY, h:mm A')
